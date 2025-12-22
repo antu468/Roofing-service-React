@@ -1,6 +1,9 @@
 import './App.css'
 import bg from "./assets/image 13.png"
 import logo from "./assets/Frame 3.png"
+import pic from "./assets/Group.png"
+import pic1 from "./assets/Group (1).png"
+import pic2 from "./assets/Vector.png"
 
 function App() {
   return (
@@ -31,6 +34,24 @@ function App() {
             </button>
           </div>
         </header>
+        
+          <section className="hero-frame" role="region" aria-label="Hero">
+            <div className="hero-content">
+              <h1 className="hero-title">Find Your Perfect<br /> Roofing Company<br /> in Seconds</h1>
+              <p className="hero-sub">Compare top-rated roofing contractors in your area.Get multiple<br /> quotes,read verified reviews,and make an informed decision all in<br /> one place.</p>
+
+              <div className="hero-ctas">
+                <button className="btn btn-primary">Get Free Quotes <span className="arrow">→</span></button>
+                <button className="btn btn-outline">Compare Companies</button>
+              </div>
+
+              <ul className="hero-features" aria-hidden="true">
+                <li><img src={pic} alt="Fast Response" className="dot"/>Fast Response</li>
+                <li><img src={pic1} alt="Verified Contractors" className="dot"/>Verified Contractors</li>
+                <li><img src={pic2} alt="Free Services" className="dot"/>100% Free Services</li>
+              </ul>
+            </div>
+          </section>
       </div>
     </>
   )
