@@ -1,7 +1,112 @@
 .bg-1 {
-  width: 1840px;
-  height: 1021px;
-  left: 200px;
-  opacity: 1;
-  position:absolute;
+  position: absolute;
+  width: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
+
+.bg-img {
+  width: 100;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.top-frame {
+  position: absolute;
+  top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  color: #fff;
+  padding: 6px 8px;
+  max-width: 980px;
+  width: 86%;
+}
+
+.frame-left .logo {
+  height: 70px;
+  display: block;
+  gap: 12px;
+}
+
+.frame-left {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 15px;
+  border-radius: 28px;
+}
+
+.frame-nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 10px 22px;
+  background: rgba(88, 92, 102, 0.95);
+  border-radius: 40px;
+  box-shadow: 0 8px 20px rgba(11, 18, 36, 0.12);
+}
+
+.nav-item {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 6px 4px;
+  transition: color .15s ease;
+}
+
+.nav-item:hover { color: #fff; }
+
+.nav-item.active {
+  position: relative;
+}
+
+.nav-item.active::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 35px;
+  background: #ffffff;
+  border-radius: 2px;
+  margin: 6px auto 0;
+}
+
+.frame-cta {
+  display: absolute;
+  align-items: right;
+   
+}
+
+.booking-btn {
+  background: #fff;
+  color: #0b1224;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(11,18,36,0.12);
+}
+
+.phone-svg {
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .top-frame { width: 92%; gap: 12px; padding: 8px 12px; }
+  .frame-nav { display: none; }
+}
+
