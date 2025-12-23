@@ -54,22 +54,17 @@ function App() {
           </div>
         </section>
       </div>
-
-      {/* HERO / BACKGROUND SECTION */}
       <section className="hero">
 
       </section>
 
-      {/* ABOUT SECTION (background image er niche) */}
       <section className="about-section">
         <div className="about-container">
 
-          {/* LEFT IMAGE */}
           <div className="about-image">
             <img src={pic3} alt="Roofing Work" />
           </div>
 
-          {/* RIGHT CONTENT */}
           <div className="about-content">
             <span className="badge">● Who We Are ?</span>
             <h2>About RoofFixer</h2>
@@ -110,6 +105,14 @@ function App() {
             <div className="value">99%</div>
             <div className="label">Satisfaction Rate</div>
           </div>
+        </div>
+      </div>
+
+      <div className="content">
+        <h2 className="text-7xl font-bold leading-tight">Comprehensive Roofing<br /> Services</h2>
+        <div className="content-right">
+          <h3 className="content-series-title">Services</h3>
+          <p className="content-series-text">Infinity Roofer delivers a wide range of services designed to meet the specific needs of homeowners, property managers, and commercial developers.</p>
         </div>
       </div>
     </>
