@@ -57,7 +57,7 @@ function App() {
 
       {/* HERO / BACKGROUND SECTION */}
       <section className="hero">
-        
+
       </section>
 
       {/* ABOUT SECTION (background image er niche) */}
@@ -75,15 +75,17 @@ function App() {
             <h2>About RoofFixer</h2>
 
             <p>
-              We're not just another roofing contractor we're a contractor
-              certified by GAF, serving both residential and commercial clients
-              with precision, care, and unmatched professionalism.
+              We're not just another roofing contractor we're a contractor certified by GAF,<br /> 
+              serving both residential and commercial clients with precision, care, and<br /> 
+              unmatched professionalism. Whether you're looking for a minor roof repair, a full<br /> 
+              roof system replacement, or planning a new roofing project, our team is ready to<br /> 
+              help every step of the way.
+
             </p>
 
             <p>
-              Whether you're looking for a minor roof repair, a full roof system
-              replacement, or planning a new roofing project, our team is ready
-              to help every step of the way.
+              We believe in transparency, honesty, and doing the job right the first time. From<br /> emergency storm response to large-scale <b>commercial roofing installations</b>, we've<br /> built our reputation on integrity and hard work.
+
             </p>
 
             <button className="learn-btn">Learn More ↗</button>
