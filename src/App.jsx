@@ -11,6 +11,12 @@ import pic6 from "./assets/Image (2).png"
 import pic7 from "./assets/card1.png"
 
 function App() {
+  const companies = [
+    "Premier Roofing Solutions",
+    "Elite Roof Masters",
+    "Reliable Roofing Co.",
+    "Summit Roofing Experts",
+  ];
   return (
     <>
       <div className="bg-1 items-center justify-center flex">
@@ -191,15 +197,58 @@ function App() {
                 </div>
               </div>
             </div>
-
-
             <button className="book-btn">Book Now ↗</button>
           </div>
-
         </div>
       </section>
 
+      <section className="figma-section">
+        <h1 className="figma-title">Top-Rated Roofing Companies</h1>
+        <p className="figma-subtitle">
+          Compare verified contractors with proven track records. All companies
+          are licensed, insured, and ready to serve you.
+        </p>
 
+        <div className="figma-grid">
+          {companies.map((name, i) => (
+            <div className="figma-card" key={i}>
+              <div className="card-top">
+                <h3>{name}</h3>
+                <div className="verified">
+                  <img src={pic2} alt="Verified Contractors" />
+                </div>
+              </div>
+
+              <div className="rating">
+                ★ <b>4.9</b> <span>(342 reviews)</span>
+              </div>
+
+              <div className="details">
+                <p>📍 Serving Metro Area</p>
+                <p><b>📞 (555) 123-4567</b></p>
+                <p>✉️ info@primerroofing.com</p>
+                <p>🕒 25 years in business</p>
+              </div>
+
+              <div className="chips">
+                <h2 className="chips">Specialities:</h2>
+                <span>Residential</span>
+                <span>Commercial</span>
+                <span>Emergency Repairs</span>
+              </div>
+
+              <button className={i === 0 ? "cta active" : "cta"}>
+                Request Quote from Premier
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="show-more-wrapper">
+          <button className="show-more-btn">Show More ↗</button>
+        </div>
+
+      </section>
     </>
   )
 }
