@@ -8,6 +8,7 @@ import pic3 from "./assets/card2.png"
 import pic4 from "./assets/Image.png"
 import pic5 from "./assets/Image (1).png"
 import pic6 from "./assets/Image (2).png"
+import pic7 from "./assets/card1.png"
 
 function App() {
   return (
@@ -73,10 +74,10 @@ function App() {
             <h2>About RoofFixer</h2>
 
             <p>
-              We're not just another roofing contractor we're a contractor certified by GAF,<br /> 
-              serving both residential and commercial clients with precision, care, and<br /> 
-              unmatched professionalism. Whether you're looking for a minor roof repair, a full<br /> 
-              roof system replacement, or planning a new roofing project, our team is ready to<br /> 
+              We're not just another roofing contractor we're a contractor certified by GAF,<br />
+              serving both residential and commercial clients with precision, care, and<br />
+              unmatched professionalism. Whether you're looking for a minor roof repair, a full<br />
+              roof system replacement, or planning a new roofing project, our team is ready to<br />
               help every step of the way.
 
             </p>
@@ -124,7 +125,7 @@ function App() {
           <img src={pic4} alt="Roof Inspections" className="card-img" />
           <h4 className="card-title">Roof Inspections</h4>
           <p className="card-desc">A proper inspection is the cornerstone of a<br />
-          roofing System. <b>More..</b></p>
+            roofing System. <b>More..</b></p>
           <button className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
         </div>
 
@@ -145,6 +146,60 @@ function App() {
           <button className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
         </div>
       </div>
+      <section className="frame">
+        <div className="frame-container">
+
+          <div className="frame-media">
+            <img src={pic7} alt="Customer Reviews" className="frame-img" />
+          </div>
+
+          <div className="frame-content">
+            <h2>Why Address Roof Issues <br />Early?</h2>
+
+            <p>
+              Waiting to fix your roof can turn a small issue into a full-blown crisis. Here's why early intervention is essential:
+            </p>
+
+            <div className="checklist">
+              <div className="check-item">
+                <span className="check-box">✓</span>
+                <div>
+                  <h4>Damage compounds over time.</h4>
+                  <p>
+                    A tiny leak can lead to rot, insulation loss, and foundation problems.
+                  </p>
+                </div>
+              </div>
+
+              <div className="check-item">
+                <span className="check-box">✓</span>
+                <div>
+                  <h4>Insurance complications.</h4>
+                  <p>
+                    Failing to act may void your policy or limit coverage.
+                  </p>
+                </div>
+              </div>
+
+              <div className="check-item">
+                <span className="check-box">✓</span>
+                <div>
+                  <h4>Higher costs.</h4>
+                  <p>
+                    Emergency services cost more than routine maintenance.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+            <button className="book-btn">Book Now ↗</button>
+          </div>
+
+        </div>
+      </section>
+
+
     </>
   )
 }
