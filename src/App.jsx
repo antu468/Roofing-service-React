@@ -91,6 +91,25 @@ function App() {
 
         </div>
       </section>
+
+      <div className="stats-wrapper">
+        <div className="stats">
+          <div className="stat top-60px lest-200px">
+            <div className="value">120K</div>
+            <div className="label">Happy Customers</div>
+          </div>
+
+          <div className="stat">
+            <div className="value">450+</div>
+            <div className="label">Verified Contractors</div>
+          </div>
+
+          <div className="stat">
+            <div className="value">99%</div>
+            <div className="label">Satisfaction Rate</div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
