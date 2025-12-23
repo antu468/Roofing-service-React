@@ -5,6 +5,9 @@ import pic from "./assets/Group.png"
 import pic1 from "./assets/Group (1).png"
 import pic2 from "./assets/Vector.png"
 import pic3 from "./assets/card2.png"
+import pic4 from "./assets/Image.png"
+import pic5 from "./assets/Image (1).png"
+import pic6 from "./assets/Image (2).png"
 
 function App() {
   return (
@@ -92,7 +95,7 @@ function App() {
       <div className="stats-wrapper">
         <div className="stats">
           <div className="stat top-60px lest-200px">
-            <div className="value">120K</div>
+            <div className="value">10K+</div>
             <div className="label">Happy Customers</div>
           </div>
 
@@ -113,6 +116,33 @@ function App() {
         <div className="content-right">
           <h3 className="content-series-title">Services</h3>
           <p className="content-series-text">Infinity Roofer delivers a wide range of services designed to meet the specific needs of homeowners, property managers, and commercial developers.</p>
+        </div>
+      </div>
+
+      <div className="services-section">
+        <div className="service-card">
+          <img src={pic4} alt="Roof Inspections" className="card-img" />
+          <h4 className="card-title">Roof Inspections</h4>
+          <p className="card-desc">A proper inspection is the cornerstone of a<br />
+          roofing System. <b>More..</b></p>
+          <button className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
+        </div>
+
+        <div className="service-card">
+          <img src={pic5} alt="Roof Repairs" className="card-img" />
+          <h4 className="card-title">Roof Repairs</h4>
+          <p className="card-desc">From cracked shingles to minor leaks, our licensed and certified roofing <b>More...</b></p>
+          <button className="card-btn primary">Book Now <span className="btn-arrow">↗</span></button>
+        </div>
+
+        <div className="service-card">
+          <div className="img-wrap">
+            <img src={pic6} alt="Roof Replacement" className="card-img" />
+            <button className="img-arrow" aria-hidden="true">→</button>
+          </div>
+          <h4 className="card-title">Roof Replacement</h4>
+          <p className="card-desc">If your roof is over 20 years old or has sustained severe damage <b>More...</b></p>
+          <button className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
         </div>
       </div>
     </>
