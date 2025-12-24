@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { CheckCircle, ShieldCheck, Home } from 'lucide-react'
 import bg from "./assets/image 13.png"
 import logo from "./assets/Frame 3.png"
@@ -16,7 +16,85 @@ import pro2 from "./assets/Profile (1).png"
 import pro3 from "./assets/Profile (2).png"
 
 function App() {
-  const [openFAQ, setOpenFAQ] = useState(0); // 0 means first FAQ is open
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    const wrapper = document.querySelector('.stats-wrapper');
+    if (!wrapper) return;
+
+    const animateValue = (el, target, suffix, duration = 1400) => {
+      const start = performance.now();
+      const startVal = 0;
+      const run = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = Math.floor(startVal + (target - startVal) * progress);
+        if (suffix === 'K+') {
+          // show raw number during animation, convert to shorthand at end
+          if (progress < 1) {
+            el.textContent = current.toLocaleString();
+          } else {
+            el.textContent = Math.round(target / 1000) + 'K+';
+          }
+        } else if (suffix === '%') {
+          el.textContent = Math.floor(current) + '%';
+        } else if (suffix === '+') {
+          el.textContent = Math.floor(current) + '+';
+        } else {
+          el.textContent = Math.floor(current).toString();
+        }
+
+        if (progress < 1) requestAnimationFrame(run);
+      };
+      requestAnimationFrame(run);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          wrapper.classList.add('in-view');
+
+          const els = wrapper.querySelectorAll('.stat .value');
+          els.forEach((el, idx) => {
+            const target = parseInt(el.getAttribute('data-target') || '0', 10);
+            const suffix = el.getAttribute('data-suffix') || '';
+            // stagger start slightly by delaying the animation call
+            setTimeout(() => animateValue(el, target, suffix), idx * 120);
+          });
+
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    observer.observe(wrapper);
+    return () => observer.disconnect();
+  }, []);
+
+  // hero/background entrance animation when #home enters view
+  useEffect(() => {
+    const el = document.getElementById('home');
+    if (!el) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          el.classList.add('hero-in');
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.05 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const [openFAQ, setOpenFAQ] = useState(0);
 
   const companies = [
     "Premier Roofing Solutions",
@@ -50,7 +128,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-1 items-center justify-center flex">
+      <div id="home" className="bg-1 items-center justify-center flex">
         <img src={bg} alt="background" className="bg-img" />
 
         <header className="top-frame" role="banner">
@@ -59,16 +137,16 @@ function App() {
           </div>
 
           <nav className="frame-nav" aria-label="Main navigation">
-            <a className="nav-item active">Home</a>
-            <a className="nav-item">Services</a>
-            <a className="nav-item">Companies</a>
-            <a className="nav-item">About</a>
-            <a className="nav-item">Contacts</a>
-            <a className="nav-item">Reviews</a>
+            <a href="#home" className="nav-item active" onClick={(e) => handleNavClick(e, 'home')}>Home</a>
+            <a href="#services" className="nav-item" onClick={(e) => handleNavClick(e, 'services')}>Services</a>
+            <a href="#companies" className="nav-item" onClick={(e) => handleNavClick(e, 'companies')}>Companies</a>
+            <a href="#about" className="nav-item" onClick={(e) => handleNavClick(e, 'about')}>About</a>
+            <a href="#contacts" className="nav-item" onClick={(e) => handleNavClick(e, 'contacts')}>Contacts</a>
+            <a href="#reviews" className="nav-item" onClick={(e) => handleNavClick(e, 'reviews')}>Reviews</a>
           </nav>
 
           <div className="frame-cta">
-            <button className="booking-btn" aria-label="Free Booking">
+            <button data-scroll className="booking-btn" aria-label="Free Booking">
               <svg className="phone-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12 1.21.45 2.39.97 3.5a2 2 0 0 1-.45 2.11L9.91 11.09a16 16 0 0 0 6 6l1.76-1.76a2 2 0 0 1 2.11-.45c1.11.52 2.29.85 3.5.97A2 2 0 0 1 22 16.92z" fill="#0B1224" />
               </svg>
@@ -83,8 +161,8 @@ function App() {
             <p className="hero-sub">Compare top-rated roofing contractors in your area.Get multiple<br /> quotes,read verified reviews,and make an informed decision all in<br /> one place.</p>
 
             <div className="hero-ctas">
-              <button className="btn btn-primary">Get Free Quotes <span className="arrow">→</span></button>
-              <button className="btn btn-outline">Compare Companies</button>
+              <button data-scroll className="btn btn-primary">Get Free Quotes <span className="arrow">→</span></button>
+              <button data-scroll className="btn btn-outline">Compare Companies</button>
             </div>
 
             <ul className="hero-features" aria-hidden="true">
@@ -99,7 +177,7 @@ function App() {
 
       </section>
 
-      <section className="about-section">
+      <section id="about" className="about-section">
         <div className="about-container">
 
           <div className="about-image">
@@ -124,7 +202,7 @@ function App() {
 
             </p>
 
-            <button className="learn-btn">Learn More ↗</button>
+            <button data-scroll className="learn-btn">Learn More ↗</button>
           </div>
 
         </div>
@@ -133,17 +211,17 @@ function App() {
       <div className="stats-wrapper">
         <div className="stats">
           <div className="stat top-60px lest-200px">
-            <div className="value">10K+</div>
+            <div className="value" data-target="10000" data-suffix="K+">0</div>
             <div className="label">Happy Customers</div>
           </div>
 
           <div className="stat">
-            <div className="value">450+</div>
+            <div className="value" data-target="450" data-suffix="+">0</div>
             <div className="label">Verified Contractors</div>
           </div>
 
           <div className="stat">
-            <div className="value">99%</div>
+            <div className="value" data-target="99" data-suffix="%">0</div>
             <div className="label">Satisfaction Rate</div>
           </div>
         </div>
@@ -157,20 +235,20 @@ function App() {
         </div>
       </div>
 
-      <div className="services-section">
+      <div id="services" className="services-section">
         <div className="service-card">
           <img src={pic4} alt="Roof Inspections" className="card-img" />
           <h4 className="card-title">Roof Inspections</h4>
           <p className="card-desc">A proper inspection is the cornerstone of a<br />
             roofing System. <b>More..</b></p>
-          <button className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
+          <button data-scroll className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
         </div>
 
         <div className="service-card">
           <img src={pic5} alt="Roof Repairs" className="card-img" />
           <h4 className="card-title">Roof Repairs</h4>
           <p className="card-desc">From cracked shingles to minor leaks, our licensed and certified roofing <b>More...</b></p>
-          <button className="card-btn primary">Book Now <span className="btn-arrow">↗</span></button>
+          <button data-scroll className="card-btn primary">Book Now <span className="btn-arrow">↗</span></button>
         </div>
 
         <div className="service-card">
@@ -180,7 +258,7 @@ function App() {
           </div>
           <h4 className="card-title">Roof Replacement</h4>
           <p className="card-desc">If your roof is over 20 years old or has sustained severe damage <b>More...</b></p>
-          <button className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
+          <button data-scroll className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
         </div>
       </div>
       <section className="frame">
@@ -228,12 +306,12 @@ function App() {
                 </div>
               </div>
             </div>
-            <button className="book-btn">Book Now ↗</button>
+            <button data-scroll className="book-btn">Book Now ↗</button>
           </div>
         </div>
       </section>
 
-      <section className="figma-section">
+      <section id="companies" className="figma-section">
         <h1 className="figma-title">Top-Rated Roofing Companies</h1>
         <p className="figma-subtitle">
           Compare verified contractors with proven track records. All companies
@@ -276,11 +354,11 @@ function App() {
         </div>
 
         <div className="show-more-wrapper">
-          <button className="show-more-btn">Show More ↗</button>
+          <button data-scroll className="show-more-btn">Show More ↗</button>
         </div>
       </section>
 
-      <section className="testimonial-section">
+      <section id="reviews" className="testimonial-section">
         {/* TOP BAR */}
         <div className="testimonial-header">
           <div>
@@ -450,7 +528,7 @@ function App() {
         </div>
       </div>
 
-      <footer className="footer">
+      <footer id="contacts" className="footer">
         <div className="footer-container">
 
           {/* LOGO & ABOUT */}
