@@ -1,5 +1,6 @@
 import './App.css'
 import { useState } from 'react'
+import { CheckCircle, ShieldCheck, Home } from 'lucide-react'
 import bg from "./assets/image 13.png"
 import logo from "./assets/Frame 3.png"
 import pic from "./assets/Group.png"
@@ -328,7 +329,7 @@ function App() {
 
           <div className="nav-buttons">
             <button>←</button>
-            <div className="nav-buttons1"> 
+            <div className="nav-buttons1">
               <button>→</button>
             </div>
           </div>
@@ -362,9 +363,116 @@ function App() {
           </div>
         </div>
       </section>
+      <div className="main-wrapper">
+        <div className="container">
+
+          {/* LEFT SIDE */}
+          <div className="left">
+            <h1>
+              Get Your Free Roofing <br /> Quotes
+            </h1>
+            <p className="sub-text">
+              Fill out the form and receive multiple competitive quotes from verified
+              contractors in your area. No obligation, completely free.
+            </p>
+
+            <div className="features">
+              <Feature
+                icon={<CheckCircle size={22} />}
+                title="Fast Response Time"
+                desc="Receive quotes from multiple contractors within 24 hours"
+              />
+              <Feature
+                icon={<ShieldCheck size={22} />}
+                title="Verified Contractors Only"
+                desc="All contractors are licensed, insured, and background-checked"
+              />
+              <Feature
+                icon={<Home size={22} />}
+                title="No Obligation"
+                desc="Compare quotes and choose the best fit for your project"
+              />
+            </div>
+
+            <div className="why-box">
+              <h3>Why Roofing Services</h3>
+              <ul>
+                <li>●100% Free with no hidden charges</li>
+                <li>●All Contractors are licensed and insured</li>
+                <li>●No Obligation to accept any quotes</li>
+                <li>●Average saving of $1,000 - $1,200</li>
+                <li>●24 hours response guarantee</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* RIGHT FORM */}
+          <div className="form-card">
+            <h2>Request Your Free Quotes</h2>
+            <p className="form-sub">
+              Tell us about your roofing project and we'll connect you with the best contractors
+            </p>
+
+            <form>
+              <div className="row">
+                <Input label="First name" placeholder="First name" />
+                <Input label="Last name" placeholder="Last name" />
+              </div>
+
+              <Input label="Email" placeholder="you@company.com" />
+              <Input label="Phone number" placeholder="+1 (555) 000-0000" />
+
+              <div className="input-box">
+                <label>Project Type</label>
+                <select>
+                  <option>Select project type</option>
+                  <option>Roof Repair</option>
+                  <option>Roof Replacement</option>
+                  <option>New Roof</option>
+                </select>
+              </div>
+
+              <Input label="Property Address" placeholder="123 Main St, City, State ZIP" />
+
+              <div className="input-box">
+                <label>Project Details</label>
+                <textarea rows="4" placeholder="Tell us more about your roofing needs..." />
+              </div>
+
+              <div className="check-row">
+                <input type="checkbox" />
+                <span>You agree to our friendly privacy policy.</span>
+              </div>
+
+              <button type="submit">Get My Free Quotes →</button>
+            </form>
+          </div>
+        </div>
+      </div>
 
     </>
   )
+}
+
+function Feature({ icon, title, desc }) {
+  return (
+    <div className="feature-box">
+      <div className="feature-icon">{icon}</div>
+      <div>
+        <h4>{title}</h4>
+        <p>{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+function Input({ label, placeholder }) {
+  return (
+    <div className="input-box">
+      <label>{label}</label>
+      <input type="text" placeholder={placeholder} />
+    </div>
+  );
 }
 function TestimonialCard({ title, text, name, location, image }) {
   return (
@@ -385,6 +493,7 @@ function TestimonialCard({ title, text, name, location, image }) {
       </div>
     </div>
   );
+
 }
 
 export default App

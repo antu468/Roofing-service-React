@@ -1016,14 +1016,14 @@ body {
   color: #ff7b00;
   font-size: 18px;
   margin-bottom: 20px;
-  
+
 }
 
 /* TEXT */
 .testimonial-card h3 {
   font-size: 18px;
   margin-bottom: 12px;
-  
+
 }
 
 .review {
@@ -1071,9 +1071,10 @@ body {
   background: #ffffff;
   color: rgb(0, 0, 0);
 }
+
 .nav-buttons1 button {
   width: 36px;
-  height: 36px;                     
+  height: 36px;
   border-radius: 50%;
   border: none;
   background: #000000;
@@ -1090,11 +1091,12 @@ body {
     padding: 60px 20px;
   }
 }
+
 .testimonial-title {
   font-size: 36px;
   font-weight: 600;
   margin-bottom: 12px;
-  color:#000000;
+  color: #000000;
 }
 
 .testimonial-sub {
@@ -1220,4 +1222,148 @@ body {
   .faq-item {
     padding: 15px;
   }
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #000;
+}
+
+.main-wrapper {
+  width: 1440px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 6200px;
+  padding: 80px 80px 80px 109px;
+  background: #ffffff;
+  position: absolute;
+  left: 18.3%;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  color: #fff;
+}
+
+.left h1 {
+  color: #030303;
+  font-size: 40px;
+}
+
+.sub-text {
+  color: #9ca3af;
+  max-width: 420px;
+  margin-top: 10px;
+}
+
+.features {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color:#000000;
+  font-weight: 600;
+}
+
+.feature-box {
+  border: 1px solid #1f2933;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.feature-icon {
+  background: #22c55e;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.feature-box p {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.why-box {
+  background: #fff;
+  color: #000;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 40px;
+  width: 360px;
+  font-weight: 500;
+}
+
+.why-box ul {
+  padding-left: 18px;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.form-sub {
+  color: #854747;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+  border: 1px solid #8b7b7b;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 4px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  
+}
+
+.check-row {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  color: #423636;
+  margin: 10px 0;
+  
+}
+
+button {
+  width: 100%;
+  background: #22c55e;
+  border: none;
+  color: #fff;
+  padding: 12px;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #16a34a;
 }
