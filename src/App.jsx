@@ -1,4 +1,5 @@
 import './App.css'
+import { useState } from 'react'
 import bg from "./assets/image 13.png"
 import logo from "./assets/Frame 3.png"
 import pic from "./assets/Group.png"
@@ -14,12 +15,37 @@ import pro2 from "./assets/Profile (1).png"
 import pro3 from "./assets/Profile (2).png"
 
 function App() {
+  const [openFAQ, setOpenFAQ] = useState(0); // 0 means first FAQ is open
+
   const companies = [
     "Premier Roofing Solutions",
     "Elite Roof Masters",
     "Reliable Roofing Co.",
     "Summit Roofing Experts",
   ];
+
+  const faqs = [
+    {
+      question: "What's the difference between a contractor certified by GAF and a regular roofer?",
+      answer: "A contractor certified by GAF has undergone comprehensive training, adheres to strict installation best practices, and meets ongoing performance standards established by North America's largest roofing manufacturer."
+    },
+    {
+      question: "How long does a typical residential roofing project take?",
+      answer: "Simply fill out our online form or call us directly. We'll schedule a free inspection and provide a detailed quote within 24 hours. No hidden fees or obligations – our service is completely free."
+    },
+    {
+      question: "How much does a custom home typically cost?",
+      answer: "Yes, all our roofing contractors are fully licensed, insured, and certified by GAF. We only work with verified professionals. Your property is protected with comprehensive insurance coverage."
+    },
+    {
+      question: "How do you find a roofing contractor you can trust?",
+      answer: "We serve the entire metro area and surrounding regions. Contact us to check if we service your specific location."
+    }
+  ];
+
+  const toggleFAQ = (index) => {
+    setOpenFAQ(openFAQ === index ? -1 : index);
+  };
 
   return (
     <>
@@ -298,13 +324,41 @@ function App() {
 
         {/* FOOTER NAV */}
         <div className="testimonial-footer">
-          <span>01 of 10</span>
+          <span><b>01</b> of 10</span>
 
           <div className="nav-buttons">
             <button>←</button>
             <div className="nav-buttons1"> 
               <button>→</button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="faq-section">
+        <div className="faq-container">
+          <div className="faq-header">
+            <span className="faq-badge">● FAQ</span>
+            <h2>Answers to your<br /> roofing questions</h2>
+            <p>Find answers to common questions about Roofing services, property<br /> listings, and the real estate process. We're here to provide clarity and<br /> assist you every step of the way.</p>
+          </div>
+
+          <div className="faq-content">
+            {faqs.map((faq, index) => (
+              <div className="faq-item" key={index}>
+                <div className="faq-question" onClick={() => toggleFAQ(index)}>
+                  <h3>{faq.question}</h3>
+                  <span className="faq-toggle">
+                    {openFAQ === index ? '−' : '+'}
+                  </span>
+                </div>
+                {openFAQ === index && (
+                  <div className="faq-answer">
+                    <p>{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
