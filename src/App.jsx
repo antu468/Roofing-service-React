@@ -450,6 +450,59 @@ function App() {
         </div>
       </div>
 
+      <footer className="footer">
+        <div className="footer-container">
+
+          {/* LOGO & ABOUT */}
+          <div className="footer-col logo-col">
+            <div className="logo">
+              <img src={logo} alt="RoofFixer logo" />
+            </div>
+            <p>
+              Stay updated with our latest Roof Service tips, service updates, and helpful
+              articles on maintaining a spotless home.
+            </p>
+          </div>
+
+          {/* COMPANY */}
+          <div className="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li>About Us</li>
+              <li>Services</li>
+              <li>Our Team</li>
+            </ul>
+          </div>
+
+          {/* KNOW MORE */}
+          <div className="footer-col">
+            <h4>Know More</h4>
+            <ul>
+              <li>Support</li>
+              <li>Privacy Policy</li>
+              <li>Terms & conditions</li>
+            </ul>
+          </div>
+
+          {/* NEWSLETTER */}
+          <div className="footer-col">
+            <h4>Newsletter</h4>
+            <div className="newsletter">
+              <input type="email" placeholder="Email Goes here" />
+            </div>
+            <button className="send-btn">Send</button>
+            <div className="footer-bottom">
+              <p className="newsletter-para" style={{ maxWidth: '1100px', margin: '12px auto 0', borderTop: '1px solid rgba(255,255,255,0.12)', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                2025 “RoofFixer” All Rights Received.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </footer>
+
     </>
   )
 }
