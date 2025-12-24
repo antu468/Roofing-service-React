@@ -9,6 +9,9 @@ import pic4 from "./assets/Image.png"
 import pic5 from "./assets/Image (1).png"
 import pic6 from "./assets/Image (2).png"
 import pic7 from "./assets/card1.png"
+import pro1 from "./assets/Profile.png"
+import pro2 from "./assets/Profile (1).png"
+import pro3 from "./assets/Profile (2).png"
 
 function App() {
   const companies = [
@@ -17,6 +20,7 @@ function App() {
     "Reliable Roofing Co.",
     "Summit Roofing Experts",
   ];
+
   return (
     <>
       <div className="bg-1 items-center justify-center flex">
@@ -247,10 +251,86 @@ function App() {
         <div className="show-more-wrapper">
           <button className="show-more-btn">Show More ↗</button>
         </div>
-
       </section>
+
+      <section className="testimonial-section">
+        {/* TOP BAR */}
+        <div className="testimonial-header">
+          <div>
+            <h2 className="testimonial-title">What Our Clients Say</h2>
+            <p className="testimonial-sub">
+              Read the success stories and heartfelt testimonials from our valued
+              clients. Discover why they chose Estarein for their real estate
+              needs.
+            </p>
+          </div>
+          <a href="#" className="view-all">
+            View All Testimonials ↗
+          </a>
+        </div>
+
+        {/* CARDS */}
+        <div className="testimonial-cards">
+          <TestimonialCard
+            title={<b>Exceptional Service!</b>}
+            text="I can only say wonderful things about our experience with JD! They are passionate, patient, knowledgeable and incredibly dedicated to their work and their clients."
+            name="Wade Warren"
+            location="USA, California"
+            image={pro1}
+          />
+
+          <TestimonialCard
+            title={<b>Efficient and Reliable</b>}
+            text="We built a beautiful custom home with Jackson Dwellings (The Shed House). We could not be happier. It was built in a"
+            name="Emelie Thomson"
+            location="USA, Florida"
+            image={pro2}
+          />
+
+          <TestimonialCard
+            title={<b>Trusted Advisors</b>}
+            text="JD built our dream country-style home in Gisborne and we couldn't be happier with the result. We received excellent communication throughout the build."
+            name="John Mans"
+            location="USA, Nevada"
+            image={pro3}
+          />
+        </div>
+
+        {/* FOOTER NAV */}
+        <div className="testimonial-footer">
+          <span>01 of 10</span>
+
+          <div className="nav-buttons">
+            <button>←</button>
+            <div className="nav-buttons1"> 
+              <button>→</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </>
   )
+}
+function TestimonialCard({ title, text, name, location, image }) {
+  return (
+    <div className="testimonial-card">
+      <div className="stars">
+        ★ ★ ★ ★ ★
+      </div>
+
+      <h3>{title}</h3>
+      <p className="review">{text}</p>
+
+      <div className="author">
+        <img src={image} alt={name} className="avatar"></img>
+        <div>
+          <strong>{name}</strong>
+          <span>{location}</span>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App
