@@ -126,7 +126,7 @@ function App() {
     setOpenFAQ(openFAQ === index ? -1 : index);
   };
 
-  // companies "page" state for showing more companies
+
   const [showCompaniesPage, setShowCompaniesPage] = useState(false);
   const moreCompanies = [
     { id: 1, name: 'Atlas Roofing Co.', image: pic3 },
@@ -138,6 +138,37 @@ function App() {
     { id: 7, name: 'Urban Shield Roofing', image: pic },
     { id: 8, name: 'Summit Peak Roofing', image: pic1 },
   ];
+
+
+  const [showTestimonialsPage, setShowTestimonialsPage] = useState(false);
+  const moreTestimonials = [
+    { id: 1, company: 'Premier Roofing Solutions', image: pro1, rating: 4.9, reviews: 342, text: 'Top quality workmanship and fast response.' },
+    { id: 2, company: 'Elite Roof Masters', image: pro2, rating: 4.8, reviews: 210, text: 'Very professional and trustworthy.' },
+    { id: 3, company: 'Reliable Roofing Co.', image: pro3, rating: 4.7, reviews: 189, text: 'Great communication and fair pricing.' },
+    { id: 4, company: 'Summit Roofing Experts', image: pic7, rating: 4.8, reviews: 154, text: 'Handled a large commercial job perfectly.' },
+    { id: 5, company: 'Atlas Roofing Co.', image: pic3, rating: 4.6, reviews: 98, text: 'Quality materials and punctual crew.' },
+    { id: 6, company: 'GreenTop Contractors', image: pic4, rating: 4.5, reviews: 76, text: 'Responsive and detail-oriented.' },
+    { id: 7, company: 'Premier Roofing Solutions', image: pro1, rating: 4.9, reviews: 342, text: 'Top quality workmanship and fast response.' },
+    { id: 8, company: 'Elite Roof Masters', image: pro2, rating: 4.8, reviews: 210, text: 'Very professional and trustworthy.' },
+    { id: 9, company: 'Reliable Roofing Co.', image: pro3, rating: 4.7, reviews: 189, text: 'Great communication and fair pricing.' },
+    { id: 10, company: 'Summit Roofing Experts', image: pic7, rating: 4.8, reviews: 154, text: 'Handled a large commercial job perfectly.' },
+    { id: 11, company: 'Atlas Roofing Co.', image: pic3, rating: 4.6, reviews: 98, text: 'Quality materials and punctual crew.' },
+    { id: 12, company: 'GreenTop Contractors', image: pic4, rating: 4.5, reviews: 76, text: 'Responsive and detail-oriented.' },
+    { id: 13, company: 'Premier Roofing Solutions', image: pro1, rating: 4.9, reviews: 342, text: 'Top quality workmanship and fast response.' },
+    { id: 14, company: 'Elite Roof Masters', image: pro2, rating: 4.8, reviews: 210, text: 'Very professional and trustworthy.' },
+    { id: 15, company: 'Reliable Roofing Co.', image: pro3, rating: 4.7, reviews: 189, text: 'Great communication and fair pricing.' },
+    { id: 16, company: 'Summit Roofing Experts', image: pic7, rating: 4.8, reviews: 154, text: 'Handled a large commercial job perfectly.' },
+    { id: 17, company: 'Atlas Roofing Co.', image: pic3, rating: 4.6, reviews: 98, text: 'Quality materials and punctual crew.' },
+    { id: 18, company: 'GreenTop Contractors', image: pic4, rating: 4.5, reviews: 76, text: 'Responsive and detail-oriented.' },
+  ];
+
+  // Testimonial pagination
+  const [testimonialPage, setTestimonialPage] = useState(1);
+  const testimonialsPerPage = 3;
+  const totalTestimonialPages = 10; // UI shows 1..10 pages
+  const nextTestimonialPage = () => setTestimonialPage(p => p === totalTestimonialPages ? 1 : p + 1);
+  const prevTestimonialPage = () => setTestimonialPage(p => p === 1 ? totalTestimonialPages : p - 1);
+
 
   const scrollToQuoteForm = () => {
     const el = document.getElementById('quote-form');
@@ -158,6 +189,18 @@ function App() {
     { id: 5, name: 'Commercial Roofing', img: pic3 },
     { id: 6, name: 'Roof Coating', img: pic2 },
   ];
+
+  // compute current page items for testimonials (wrap if page exceeds data length)
+  const getTestimonialPageItems = () => {
+    if (!moreTestimonials || moreTestimonials.length === 0) return [];
+    const start = ((testimonialPage - 1) * testimonialsPerPage) % moreTestimonials.length;
+    const items = [];
+    for (let i = 0; i < testimonialsPerPage; i++) {
+      items.push(moreTestimonials[(start + i) % moreTestimonials.length]);
+    }
+    return items;
+  };
+  const testimonialPageItems = getTestimonialPageItems();
 
   return (
     <>
@@ -468,50 +511,70 @@ function App() {
               needs.
             </p>
           </div>
-          <a href="#" className="view-all">
+          <a href="#" className="view-all" onClick={(e) => { e.preventDefault(); setShowTestimonialsPage(true); }}>
             View All Testimonials ↗
           </a>
         </div>
 
         {/* CARDS */}
         <div className="testimonial-cards">
-          <TestimonialCard
-            title={<b>Exceptional Service!</b>}
-            text="I can only say wonderful things about our experience with JD! They are passionate, patient, knowledgeable and incredibly dedicated to their work and their clients."
-            name="Wade Warren"
-            location="USA, California"
-            image={pro1}
-          />
-
-          <TestimonialCard
-            title={<b>Efficient and Reliable</b>}
-            text="We built a beautiful custom home with Jackson Dwellings (The Shed House). We could not be happier. It was built in a"
-            name="Emelie Thomson"
-            location="USA, Florida"
-            image={pro2}
-          />
-
-          <TestimonialCard
-            title={<b>Trusted Advisors</b>}
-            text="JD built our dream country-style home in Gisborne and we couldn't be happier with the result. We received excellent communication throughout the build."
-            name="John Mans"
-            location="USA, Nevada"
-            image={pro3}
-          />
+          {testimonialPageItems.map((t, idx) => (
+            <TestimonialCard
+              key={(t.id || idx) + "-p" + testimonialPage}
+              title={<b>{t.company}</b>}
+              text={t.text}
+              name={t.company}
+              location={`${t.rating} • ${t.reviews} reviews`}
+              image={t.image}
+            />
+          ))}
         </div>
 
         {/* FOOTER NAV */}
         <div className="testimonial-footer">
-          <span><b>01</b> of 10</span>
+          <span><b>{testimonialPage.toString().padStart(2, '0')}</b> of {totalTestimonialPages}</span>
 
           <div className="nav-buttons">
-            <button>←</button>
+            <button aria-label="Previous testimonials" onClick={prevTestimonialPage}>←</button>
             <div className="nav-buttons1">
-              <button>→</button>
+              <button aria-label="Next testimonials" onClick={nextTestimonialPage}>→</button>
             </div>
           </div>
         </div>
       </section>
+
+      {showTestimonialsPage && (
+        <section className="testimonials-page">
+          <div className="testimonials-page-inner">
+            <header className="companies-page-header">
+              <h1>All Testimonials</h1>
+              <div>
+                <button className="card-btn" onClick={() => setShowTestimonialsPage(false)}>Back</button>
+              </div>
+            </header>
+
+            <p className="companies-page-sub">Read more verified reviews and ratings from roofing companies.</p>
+
+            <div className="testimonials-page-grid">
+              {moreTestimonials.map((t) => (
+                <div key={t.id} className="testimonial-card" style={{display: 'flex', flexDirection: 'column'}}>
+                  <div className="stars">★ ★ ★ ★ ★</div>
+                  <h3>{t.company}</h3>
+                  <p className="review">{t.text}</p>
+
+                  <div className="author" style={{marginTop: 'auto'}}>
+                    <img src={t.image} alt={t.company} className="avatar" />
+                    <div>
+                      <strong>{t.company}</strong>
+                      <span>{t.rating} • {t.reviews} reviews</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="faq-section">
         <div className="faq-container">
