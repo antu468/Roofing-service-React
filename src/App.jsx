@@ -38,7 +38,7 @@ function App() {
         const progress = Math.min(elapsed / duration, 1);
         const current = Math.floor(startVal + (target - startVal) * progress);
         if (suffix === 'K+') {
-          // show raw number during animation, convert to shorthand at end
+          
           if (progress < 1) {
             el.textContent = current.toLocaleString();
           } else {
@@ -78,7 +78,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // hero/background entrance animation when #home enters view
+  
   useEffect(() => {
     const el = document.getElementById('home');
     if (!el) return;
@@ -126,10 +126,22 @@ function App() {
     setOpenFAQ(openFAQ === index ? -1 : index);
   };
 
+  // additional services to show when the last-image button is clicked
+  const [showMoreServices, setShowMoreServices] = useState(false);
+  const moreServices = [
+    { id: 1, name: 'Emergency Roof Repair', img: pic4 },
+    { id: 2, name: 'Full Roof Replacement', img: pic5 },
+    { id: 3, name: 'Gutter Installation', img: pic6 },
+    { id: 4, name: 'Skylight Repair', img: pic7 },
+    { id: 5, name: 'Commercial Roofing', img: pic3 },
+    { id: 6, name: 'Roof Coating', img: pic2 },
+  ];
+
   return (
     <>
       <div id="home" className="bg-1 items-center justify-center flex">
         <img src={bg} alt="background" className="bg-img" />
+      
 
         <header className="top-frame" role="banner">
           <div className="frame-left">
@@ -254,13 +266,34 @@ function App() {
         <div className="service-card">
           <div className="img-wrap">
             <img src={pic6} alt="Roof Replacement" className="card-img" />
-            <button className="img-arrow" aria-hidden="true">→</button>
+            <button className="img-arrow" aria-label="Show more services" onClick={() => setShowMoreServices(true)}>→</button>
           </div>
           <h4 className="card-title">Roof Replacement</h4>
           <p className="card-desc">If your roof is over 20 years old or has sustained severe damage <b>More...</b></p>
           <button data-scroll className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
         </div>
       </div>
+      {showMoreServices && (
+        <div className="services-modal-overlay" onClick={() => setShowMoreServices(false)}>
+          <div className="services-modal" role="dialog" aria-modal="true" aria-label="More services" onClick={(e) => e.stopPropagation()}>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12}}>
+              <h3 style={{margin:0}}>More Services</h3>
+              <button className="card-btn" onClick={() => setShowMoreServices(false)}>Close</button>
+            </div>
+
+            <div className="modal-grid">
+              {moreServices.map((s) => (
+                <div className="modal-service-card" key={s.id}>
+                  <img src={s.img} alt={s.name} />
+                  <h4>{s.name}</h4>
+                  <p className="card-desc">Professional {s.name.toLowerCase()} with certified installers.</p>
+                  <button className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
       <section className="frame">
         <div className="frame-container">
 

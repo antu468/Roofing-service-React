@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+
 }
 
 .bg-img {
@@ -13,6 +14,7 @@
   height: auto;
   display: block;
   object-fit: cover;
+  
 }
 
 .top-frame {
@@ -69,7 +71,6 @@
   color: #fff;
 }
 
-/* underline animation on hover and for active item */
 .nav-item {
   position: relative;
 }
@@ -153,7 +154,6 @@
   padding: 8px 6px;
 }
 
-/* Hero entrance animations */
 #home .bg-img {
   transform-origin: center;
   transform: scale(1.06);
@@ -341,11 +341,9 @@ body {
 body {
   font-family: Arial, sans-serif;
   background: #a7adbad1;
-  /* dark background */
   color: #a76262;
 }
 
-/* ensure smooth scrolling for intra-page anchors */
 html { scroll-behavior: smooth; }
 
 .hero {
@@ -1198,6 +1196,53 @@ body {
   font-weight: 600;
   margin-bottom: 12px;
   color: #000000;
+}
+
+/* Modal styles for showing more services */
+.services-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 24px;
+}
+.services-modal {
+  background: #fff;
+  width: min(1100px, 96%);
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.28);
+}
+.modal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.modal-service-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(11,18,36,0.06);
+}
+.modal-service-card h4 {
+  margin: 8px 0 6px;
+  font-size: 16px;
+}
+.modal-service-card .card-desc {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .modal-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .testimonial-sub {
