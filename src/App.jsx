@@ -126,6 +126,28 @@ function App() {
     setOpenFAQ(openFAQ === index ? -1 : index);
   };
 
+  // companies "page" state for showing more companies
+  const [showCompaniesPage, setShowCompaniesPage] = useState(false);
+  const moreCompanies = [
+    { id: 1, name: 'Atlas Roofing Co.', image: pic3 },
+    { id: 2, name: 'GreenTop Contractors', image: pic4 },
+    { id: 3, name: 'Metro Roof Masters', image: pic5 },
+    { id: 4, name: 'Skyline Commercial', image: pic6 },
+    { id: 5, name: 'Precision Roofers', image: pic7 },
+    { id: 6, name: 'Everlast Roofing', image: pic2 },
+    { id: 7, name: 'Urban Shield Roofing', image: pic },
+    { id: 8, name: 'Summit Peak Roofing', image: pic1 },
+  ];
+
+  const scrollToQuoteForm = () => {
+    const el = document.getElementById('quote-form');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const input = el.querySelector('input');
+      if (input) input.focus();
+    }
+  };
+
   // additional services to show when the last-image button is clicked
   const [showMoreServices, setShowMoreServices] = useState(false);
   const moreServices = [
@@ -379,7 +401,7 @@ function App() {
                 <span>Emergency Repairs</span>
               </div>
 
-              <button className={i === 0 ? "cta active" : "cta"}>
+              <button className={i === 0 ? "cta active" : "cta"} onClick={() => { setShowCompaniesPage(false); scrollToQuoteForm(); }}>
                 Request Quote from Premier
               </button>
             </div>
@@ -387,9 +409,53 @@ function App() {
         </div>
 
         <div className="show-more-wrapper">
-          <button data-scroll className="show-more-btn">Show More ↗</button>
+          <button data-scroll className="show-more-btn" onClick={() => setShowCompaniesPage(true)}>Show More ↗</button>
         </div>
       </section>
+
+      {showCompaniesPage && (
+        <section className="companies-page">
+          <div className="companies-page-inner">
+            <header className="companies-page-header">
+              <h1>All Companies</h1>
+              <div>
+                <button className="card-btn" onClick={() => setShowCompaniesPage(false)}>Back</button>
+              </div>
+            </header>
+
+            <p className="companies-page-sub">Browse more verified roofing companies. Click a card to request a quote.</p>
+
+            <div className="companies-page-grid">
+              {moreCompanies.map((c) => (
+                <div className="figma-card" key={c.id} style={{display: 'flex', flexDirection: 'column'}}>
+                  <div className="card-top">
+                    <h3>{c.name}</h3>
+                    <div className="verified"><img src={c.image} alt="logo" style={{width:20,height:20,objectFit:'cover'}}/></div>
+                  </div>
+
+                  <div className="rating">★ <b>4.8</b> <span>(120 reviews)</span></div>
+
+                  <div className="details">
+                    <p>📍 Serving Metro Area</p>
+                    <p><b>📞 (555) 000-0000</b></p>
+                    <p>✉️ contact@{c.name.replace(/\s+/g,'').toLowerCase()}.com</p>
+                    <p>🕒 10+ years in business</p>
+                  </div>
+
+                  <div className="chips">
+                    <h2 className="chips">Specialities:</h2>
+                    <span>Residential</span>
+                    <span>Commercial</span>
+                    <span>Emergency</span>
+                  </div>
+
+                  <button className="cta" onClick={() => { setShowCompaniesPage(false); setTimeout(scrollToQuoteForm, 120); }}>Request Quote</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section id="reviews" className="testimonial-section">
         {/* TOP BAR */}
@@ -518,7 +584,7 @@ function App() {
           </div>
 
           {/* RIGHT FORM */}
-          <div className="form-card">
+          <div id="quote-form" className="form-card">
             <h2>Request Your Free Quotes</h2>
             <p className="form-sub">
               Tell us about your roofing project and we'll connect you with the best contractors

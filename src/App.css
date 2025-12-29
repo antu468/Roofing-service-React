@@ -1043,6 +1043,38 @@ body {
   cursor: pointer;
 }
 
+/* Full page companies view */
+.companies-page {
+  position: fixed;
+  inset: 0;
+  background: #f6f7fb;
+  z-index: 9999;
+  overflow: auto;
+  padding: 40px 80px;
+}
+.companies-page-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.companies-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.companies-page-header h1 { margin: 0; font-size: 32px; }
+.companies-page-sub { color: #444; margin-bottom: 20px; }
+.companies-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 980px) {
+  .companies-page-grid { grid-template-columns: 1fr; }
+}
+
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
