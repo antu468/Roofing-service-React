@@ -137,6 +137,16 @@ function App() {
     { id: 6, name: 'Everlast Roofing', image: pic2 },
     { id: 7, name: 'Urban Shield Roofing', image: pic },
     { id: 8, name: 'Summit Peak Roofing', image: pic1 },
+    { id: 9, name: 'Atlas Roofing Co.', image: pic3 },
+    { id: 10, name: 'GreenTop Contractors', image: pic4 },
+    { id: 11, name: 'Metro Roof Masters', image: pic5 },
+    { id: 12, name: 'Skyline Commercial', image: pic6 },
+    { id: 13, name: 'Precision Roofers', image: pic7 },
+    { id: 14, name: 'Everlast Roofing', image: pic2 },
+    { id: 15, name: 'Urban Shield Roofing', image: pic },
+    { id: 16, name: 'Summit Peak Roofing', image: pic1 },
+    { id: 17, name: 'Skyline Commercial', image: pic6 },
+    { id: 18, name: 'Atlas Roofing Co.', image: pic3 },
   ];
 
 
@@ -181,6 +191,9 @@ function App() {
 
   // additional services to show when the last-image button is clicked
   const [showMoreServices, setShowMoreServices] = useState(false);
+
+  // About details modal
+  const [showAboutDetail, setShowAboutDetail] = useState(false);
   const moreServices = [
     { id: 1, name: 'Emergency Roof Repair', img: pic4 },
     { id: 2, name: 'Full Roof Replacement', img: pic5 },
@@ -238,8 +251,8 @@ function App() {
             <p className="hero-sub">Compare top-rated roofing contractors in your area.Get multiple<br /> quotes,read verified reviews,and make an informed decision all in<br /> one place.</p>
 
             <div className="hero-ctas">
-              <button data-scroll className="btn btn-primary">Get Free Quotes <span className="arrow">→</span></button>
-              <button data-scroll className="btn btn-outline">Compare Companies</button>
+              <button data-scroll className="btn btn-primary" onClick={(e) => handleNavClick(e, 'quote-form')}>Get Free Quotes <span className="arrow">→</span></button>
+              <button data-scroll className="btn btn-outline" onClick={(e) => handleNavClick(e, 'companies')}>Compare Companies</button>
             </div>
 
             <ul className="hero-features" aria-hidden="true">
@@ -279,7 +292,7 @@ function App() {
 
             </p>
 
-            <button data-scroll className="learn-btn">Learn More ↗</button>
+            <button data-scroll className="learn-btn" onClick={() => setShowAboutDetail(true)}>Learn More ↗</button>
           </div>
 
         </div>
@@ -355,6 +368,36 @@ function App() {
                   <button className="card-btn">Book Now <span className="btn-arrow">↗</span></button>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showAboutDetail && (
+        <div className="about-modal-overlay" onClick={() => setShowAboutDetail(false)}>
+          <div className="about-modal" role="dialog" aria-modal="true" aria-label="About details" onClick={(e) => e.stopPropagation()}>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12}}>
+              <h3 style={{margin:0}}>About RoofFixer — Details</h3>
+              <button className="card-btn" onClick={() => setShowAboutDetail(false)}>Close</button>
+            </div>
+
+            <div style={{lineHeight: 1.6}}>
+              <p><strong>Our Mission</strong>: Provide homeowners and businesses with fast, transparent access to vetted roofing contractors so they can make informed decisions.</p>
+              <p><strong>Services Overview</strong>: We connect you with contractors for roof inspections, repairs, full replacements, commercial roofing, gutter work, skylights, and emergency services.</p>
+              <p><strong>How it works</strong>: Submit your project through our quote form, receive multiple estimates from verified contractors, compare ratings and reviews, then request a booking. Our team verifies licenses and insurance for all partners.</p>
+              <p><strong>Why choose us</strong>: Verified contractors, free service, fast response, and a satisfaction guarantee. We prioritize transparency and quality workmanship.</p>
+
+              <h4>Page Sections</h4>
+              <ul>
+                <li><b>Hero</b> — Quick search & main CTAs</li>
+                <li><b>About</b> — Company mission and values</li>
+                <li><b>Services</b> — Core and expanded services</li>
+                <li><b>Companies</b> — Top-rated contractors and full list</li>
+                <li><b>Testimonials</b> — Client reviews and ratings</li>
+                <li><b>Quote Form</b> — Request multiple quotes</li>
+              </ul>
+
+              <p style={{marginTop:12}}>If you want this content expanded (images, policy links, or team bios), tell me what to include and I will add it.</p>
             </div>
           </div>
         </div>

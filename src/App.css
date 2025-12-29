@@ -6,15 +6,15 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
+  left: -7.9%;
 }
 
 .bg-img {
-  width: 100;
+  width: 140;
   height: auto;
   display: block;
   object-fit: cover;
-  
+
 }
 
 .top-frame {
@@ -122,7 +122,7 @@
   gap: 10px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(11, 18, 36, 0.12);
+  box-shadow: 0 6px 14px rgba(51, 70, 120, 0.12);
 }
 
 .phone-svg {
@@ -143,7 +143,7 @@
 
 .hero-frame {
   position: absolute;
-  left: 25%;
+  left: 30%;
   top: 410px;
   z-index: 6;
   max-width: 800px;
@@ -1723,3 +1723,24 @@ body {
   height: 1px;
   background: #ffffff;
 }
+
+/* About modal styles */
+.about-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12000;
+}
+.about-modal {
+  background: #fff;
+  color: #111;
+  max-width: 1820px;
+  width: calc(100% - 48px);
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(2,6,23,0.45);
+}
+  
